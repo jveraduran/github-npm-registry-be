@@ -14,9 +14,32 @@ GitHub with GitHubActions and GHAS offer an incredible experience for developers
 
 ### Authenticating to the Container registry
 
-https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages
+1. Setting your [access token](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries), to enable GitHub functions like an OAuth access token and authenticates the access to the GitHub API.
 
-### Pushing container images
+    Select the ```read:packages``` scope to download container images and read their metadata.
+
+    Select the ```write:packages``` scope to download and upload container images and read and write their metadata.
+
+    Select the ```delete:packages``` scope to delete container images.
+
+2. To authenticate by adding your personal access token to your ~/.npmrc file, edit the ~/.npmrc file for your project to include the following line, replacing TOKEN with your personal access token. Create a new ~/.npmrc file if one doesn't exist.
+
+    ```
+    //npm.pkg.github.com/:_authToken=TOKEN
+    ```
+3. To authenticate by logging in to npm, use the ```npm login``` command, replacing USERNAME with your GitHub username, TOKEN with your personal access token, and PUBLIC-EMAIL-ADDRESS with your email address.
+
+If GitHub Packages is not your default package registry for using npm and you want to use the ```npm audit``` command, we recommend you use the ```--scope``` flag with the owner of the package when you authenticate to GitHub Packages.
+
+    ```
+    $ npm login --scope=@OWNER --registry=https://npm.pkg.github.com
+
+    > Username: USERNAME
+    > Password: TOKEN
+    > Email: PUBLIC-EMAIL-ADDRESS
+    ```
+
+### Pushing packages
 
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages
 
@@ -102,7 +125,7 @@ jobs:
   
   NPM-Publish:
     if: ${{ (github.event.release.action == 'released') && always() }}
-    uses: ./.github/workflows/registry.yml
+    uses: ./.github/workflows/npm-registry.yml
     needs: [NPM-Audit]
     secrets:
       PAT_GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}

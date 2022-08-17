@@ -12,7 +12,7 @@ GitHub with GitHubActions and GHAS offer an incredible experience for developers
 
 ## Using Github NPM Registry - Local Environment
 
-### Authenticating to the Container registry
+### Authenticating to the NPM Registry
 
 1. Setting your [access token](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries), to enable GitHub functions like an OAuth access token and authenticates the access to the GitHub API.
 
@@ -31,17 +31,41 @@ GitHub with GitHubActions and GHAS offer an incredible experience for developers
 
 If GitHub Packages is not your default package registry for using npm and you want to use the ```npm audit``` command, we recommend you use the ```--scope``` flag with the owner of the package when you authenticate to GitHub Packages.
 
-    ```
-    $ npm login --scope=@OWNER --registry=https://npm.pkg.github.com
-
-    > Username: USERNAME
-    > Password: TOKEN
-    > Email: PUBLIC-EMAIL-ADDRESS
-    ```
+```
+  $ npm login --scope=@OWNER --registry=https://npm.pkg.github.com
+  > Username: USERNAME
+  > Password: TOKEN
+  > Email: PUBLIC-EMAIL-ADDRESS
+```
 
 ### Pushing packages
 
-https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages
+#### Publishing a package using a local .npmrc file
+
+You can use an .npmrc file to configure the scope mapping for your project. In the .npmrc file, use the GitHub Packages URL and account owner so GitHub Packages knows where to route package requests. Using an .npmrc file prevents other developers from accidentally publishing the package to npmjs.org instead of GitHub Packages.
+
+1. Authenticate to GitHub Packages. For more information, see "[Authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages)."
+2. In the same directory as your ```package.json``` file, create or edit an ```.npmrc``` file to include a line specifying GitHub Packages URL and the account owner. Replace ```OWNER``` with the name of the user or organization account that owns the repository containing your project.
+
+    ```
+    @OWNER:registry=https://npm.pkg.github.com
+    ```
+
+3. Add the .npmrc file to the repository where GitHub Packages can find your project. For more information, see "[Adding a file to a repository].(https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)"
+
+    **NOTE**: Include on [```.gitignore```](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files) the exclusion of .npmrc to not compromise security.
+
+4. Verify the name of your package in your project's package.json. The name field must contain the scope and the ```name``` of the package. For example, if your package is called "test", and you are publishing to the "My-org" GitHub organization, the ```name``` field in your package.json should be ```@my-org/test```.
+
+5. Verify the repository field in your project's package.json. The ```repository``` field must match the URL for your GitHub ```repository```. For example, if your repository URL is ```github.com/my-org/test``` then the repository field should be ```https://github.com/my-org/test.git```.
+
+6. Publish the package:
+
+    ```
+    $ npm publish
+    ```
+
+#### Publishing a package using publishConfig in the package.json file
 
 To discover every way to working with [NPM Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry) please generete and **ISSUE**.
 

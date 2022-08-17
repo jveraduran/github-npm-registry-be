@@ -51,7 +51,7 @@ You can use an .npmrc file to configure the scope mapping for your project. In t
     @OWNER:registry=https://npm.pkg.github.com
     ```
 
-3. Add the .npmrc file to the repository where GitHub Packages can find your project. For more information, see "[Adding a file to a repository].(https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)"
+3. Add the .npmrc file to the repository where GitHub Packages can find your project. For more information, see "[Adding a file to a repository](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)."
 
     **NOTE**: Include on [```.gitignore```](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files) the exclusion of .npmrc to not compromise security.
 
@@ -67,6 +67,23 @@ You can use an .npmrc file to configure the scope mapping for your project. In t
 
 #### Publishing a package using publishConfig in the package.json file
 
+You can use ```publishConfig``` element in the package.json file to specify the registry where you want the package published. For more information, see "[publishConfig](https://docs.npmjs.com/files/package.json#publishconfig)" in the npm documentation.
+
+1. Edit the package.json file for your package and include a ```publishConfig``` entry.
+
+```
+"publishConfig": {
+  "registry":"https://npm.pkg.github.com"
+},
+```
+
+2. Verify the ```repository``` field in your project's package.json. The ```repository``` field must match the URL for your GitHub repository. For example, if your repository URL is ```github.com/my-org/test``` then the repository field should be ```https://github.com/my-org/test.git```
+
+3. Publish the package:
+
+      ```
+      $ npm publish
+      ```
 To discover every way to working with [NPM Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry) please generete and **ISSUE**.
 
 <br>

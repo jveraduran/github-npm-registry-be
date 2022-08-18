@@ -1,0 +1,23 @@
+{
+  "compilationOptions": {
+    "preferredConfigPath": "./tsconfig.json",
+    "followSymlinks": true
+  },
+  "entries": [
+    {
+      "filePath": "./src/index.ts",
+      "outFile": "./dist/index.d.ts",
+      "failOnClass": false,
+      "noCheck": false,
+      "libraries": {},
+      "output": {
+        "inlineDeclareGlobals": false,
+        "sortNodes": false,
+        "inlineDeclareExternals": false,
+        "noBanner": false,
+        "respectPreserveConstEnum": false,
+        "exportReferencedTypes": true
+      }
+    }
+  ]
+}

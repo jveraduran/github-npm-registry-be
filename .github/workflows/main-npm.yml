@@ -15,7 +15,7 @@ jobs:
   
   NPM-Publish:
     if: ${{ (github.event.release.action == 'released') && always() }}
-    uses: ./.github/workflows/registry.yml
+    uses: ./.github/workflows/npm-registry.yml
     needs: [NPM-Audit]
     secrets:
       PAT_GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}

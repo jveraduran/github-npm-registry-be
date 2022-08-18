@@ -50,10 +50,3 @@ jobs:
     needs: [Security-Anchore, Security-Snyk]
     secrets:
       PAT_GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
-  
-  Registry:
-    if: ${{ (github.event.release.action == 'released') && always() }}
-    uses: ./.github/workflows/docker-registry.yml
-    needs: [Docker-SBOM, Security-Anchore, Security-Snyk]
-    secrets:
-      PAT_GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}

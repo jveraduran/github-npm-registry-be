@@ -1,0 +1,62 @@
+{
+  "env": {
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jest/recommended",
+    "plugin:promise/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:import/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.eslint.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "jest",
+    "eslint-comments",
+    "promise",
+    "unicorn",
+    "import"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-use-before-define": "off",
+    "no-useless-constructor": "off",
+    "unicorn/no-array-reduce": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-useless-constructor": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "eslint-comments/no-unused-disable": "error",
+    "camelcase": "off",
+    "no-shadow": "off",
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-array-for-each": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/?(*.)+(spec|test).[tj]s?(x)"],
+        "optionalDependencies": false,
+        "peerDependencies": true,
+        "bundledDependencies": true
+      }
+    ]
+  }
+}

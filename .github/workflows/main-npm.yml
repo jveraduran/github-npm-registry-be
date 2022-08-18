@@ -3,19 +3,10 @@ on:
   pull_request: 
     branches: [develop, staging, master]
     types: [opened, synchronize]
-  release:
-    types: [published]
 
 jobs:
   NPM-Audit:
     if: github.event_name != 'opened'
     uses: ./.github/workflows/npm-audit.yml
-    secrets:
-      PAT_GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
-  
-  NPM-Publish:
-    if: ${{ (github.event.release.action == 'released') && always() }}
-    uses: ./.github/workflows/npm-registry.yml
-    needs: [NPM-Audit]
     secrets:
       PAT_GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}

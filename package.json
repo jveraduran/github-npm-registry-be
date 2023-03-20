@@ -108,6 +108,6 @@
     "node": ">=14"
   },
   "dependencies": {
-    "cosmiconfig": "^6.0.0"
+    "cosmiconfig": "^8.1.3"
   }
 }
